@@ -9,15 +9,36 @@ spring:
   # Database
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5444/app
+    url: ${DB_URL:jdbc:postgresql://localhost:5444/app}
 #    url: jdbc:postgresql://postgres:5432/app
-    username: dev
-    password: admin
+    username: ${DB_USER:dev}
+    password: ${DB_PASSWORD:admin}
   jpa:
     hibernate:
-      ddl-auto: create-drop # When you launch the application for the first time - switch "none" at "create"
-    show-sql: true
+      ddl-auto: ${DB_DLL_AUTO:create-drop} # When you launch the application for the first time - switch "none" at "create"
+    show-sql: ${DB_SHOW_SQL:true}
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     open-in-view: false
     generate-ddl: true
+
+org:
+  keycloak:
+    url:
+      base: ${KEYCLOAK_URL:http://localhost:8180}
+      login: /realms/${REALM:kc-auth-realm}/protocol/openid-connect/token
+    auth:
+      user: ${KEYCLOAK_AUTH_USER:ans}
+      password: ${KEYCLOAK_AUTH_PASSWORD:123}
+      client_id: ${KEYCLOAK_AUTH_CLIENT_ID:ks-auth-client}
+
+user-service:
+  url:
+    base: ${USER_SERVICE_URL:http://localhost:8050}
+    groups: /api/group
+    groupsByUser: /api/group/user/{userId}
+    roles: /api/role
+    rolesByUser: /api/role/user/{userId}
+    users: /api/user
+    usersByGroup: /api/user/group/{groupId}
+    usersByRole: /api/user/role/{roleName}

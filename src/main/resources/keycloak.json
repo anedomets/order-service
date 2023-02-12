@@ -1,6 +1,6 @@
 {
   "realm": "kc-auth-realm",
-  "auth-server-url": "http://auth-service:81О80/",
+  "auth-server-url": "http://auth-service:8180/",
   "ssl-required": "external",
   "resource": "ks-auth-client",
   "public-client": true,

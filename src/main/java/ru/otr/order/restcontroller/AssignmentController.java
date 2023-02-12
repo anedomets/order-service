@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.otr.order.dto.AssignmentDto;
+import ru.otr.order.property.UserServiceProperty;
 import ru.otr.order.service.AssignmentService;
 
 import java.util.List;
